@@ -23,40 +23,19 @@ public class FollowerGit {
 
         try {
             Follower follower = new Follower();
-            //JSONObject jsonObj = new JSONObject(json);
-            //JSONArray array = jsonObj.getJSONArray(null);
             JSONArray array = new JSONArray(json);
-            System.out.println("==============================" + array);
-            //JSONObject obj = array.getJSONObject(new Random().nextInt(array.length()));
-            JSONObject obj = array.getJSONObject(1);
-            System.out.println("-----------------------------------" + obj);
+            JSONObject obj = array.getJSONObject(new Random().nextInt(array.length()));
 
             //Name and role
             String name = obj.getString("login");
-            System.out.println("-----------------------------------" + name);
             follower.setLogin(name);
-//            String role = obj.getString("role");
-//            Follower.setRole(role);
 
             // id
             Integer id = obj.getInt("id");
             follower.setId(id);
-            System.out.println("----------------------------------- id: " + id);
-
             //Avatar
             String avatar = obj.getString("avatar_url");
-            System.out.println("----------------------------------- avatar: " + avatar);
             follower.setAvatar(baixarImagem(avatar));
-//
-//            //Actor
-//            JSONArray actorArray = obj.getJSONArray("voice_actors");
-//            JSONObject actorObj = actorArray.getJSONObject(0);
-//            Actor actor = new Actor();
-//            actor.setName(actorObj.getString("name"));
-//            actor.setLanguage(actorObj.getString("language"));
-//            String actorAvatar = actorObj.getString("image_url");
-//            actor.setAvatar(baixarImagem(actorAvatar));
-//            Follower.setActor(actor);
 
             return follower;
         }catch (JSONException e){

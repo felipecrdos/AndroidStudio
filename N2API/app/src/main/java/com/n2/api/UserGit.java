@@ -3,7 +3,6 @@ package com.n2.api;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,18 +21,11 @@ public class UserGit {
 
         try {
             User user = new User();
-//            JSONObject jsonObj = new JSONObject(json);
-//            JSONArray array = jsonObj.getJSONArray("characters");
-//            JSONObject obj = array.getJSONObject(new Random().nextInt(array.length()));
-            System.out.println("===========================================\n------------------------------------------------");
             JSONObject obj = new JSONObject(json);
 
             //Name and role
             String name = obj.getString("name");
-            System.out.println("=========================////==================" + name);
             user.setName(name);
-//            String role = obj.getString("role");
-//            user.setRole(role);
 
             // id
             Integer id = obj.getInt("id");
@@ -42,16 +34,6 @@ public class UserGit {
             //Avatar
             String avatar = obj.getString("avatar_url");
             user.setAvatar(baixarImagem(avatar));
-//
-//            //Actor
-//            JSONArray actorArray = obj.getJSONArray("voice_actors");
-//            JSONObject actorObj = actorArray.getJSONObject(0);
-//            Actor actor = new Actor();
-//            actor.setName(actorObj.getString("name"));
-//            actor.setLanguage(actorObj.getString("language"));
-//            String actorAvatar = actorObj.getString("image_url");
-//            actor.setAvatar(baixarImagem(actorAvatar));
-//            user.setActor(actor);
 
             return user;
         }catch (JSONException e){
