@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText name;
     EditText phone;
+    TextView error;
     ModelDAO dao;
     private final String URL = "https://asterinfo.herokuapp.com/";
 
@@ -22,17 +24,21 @@ public class RegisterActivity extends AppCompatActivity {
 
         name = findViewById(R.id.nome);
         phone = findViewById(R.id.phone);
+        error = findViewById(R.id.errorPopup);
         dao = new ModelDAO(this);
     }
 
     public void salvar(View view){
         if(!emptyFields()){
+            error.setVisibility(error.INVISIBLE);
             Model model = new Model();
             model.setName(name.getText().toString());
             model.setPhone(phone.getText().toString());
             long id = dao.insert(model);
             Toast.makeText(this, "Add model id: " + id, Toast.LENGTH_SHORT).show();
             cleanFields();
+        }else{
+            error.setVisibility(error.VISIBLE);
         }
     }
 
